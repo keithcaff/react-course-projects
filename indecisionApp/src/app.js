@@ -2,18 +2,16 @@ console.log('app.js is running');
 
 var appDeets = {
     title: 'Indecision App - hello world :/',
-    subtitle: 'React app dev'
+    subtitle: 'React app dev',
+    options: []//['A','B','C','D']
 }
 
 
 var template = (
     <div>
         <h1>{appDeets.title}</h1> 
-        <p>{appDeets.subtitle}</p>
-        <ol>
-            <li>Item one</li>
-            <li>Item two</li>
-        </ol>
+        {appDeets && appDeets.subtitle && <p>{appDeets.subtitle}</p>}
+        {(appDeets && appDeets.options.length > 0)? <p>Options are {appDeets.options} </p> : <p>No options</p> }
     </div>
 );
 
@@ -21,17 +19,23 @@ var template = (
 var user = {
     name: 'Jim',
     age: '33',
-    location: 'Galway'    
+    location: ''    
 };
+
+function getLocation(location) {
+    if(location) {
+        return <p>Location: {location}</p>
+    }
+}
 
 var userName = 'Keith';
 var userAge = '30';
 var userLocation = 'NYC';
 var template2 = (
     <div>
-        <h1>{user.name + '!'}</h1>
-        <p>Age: {user.age}</p>
-        <p>Location: {user.location}</p>
+        <h1>{user.name? user.name : 'Anonymous'}</h1>
+        {user.age && user.age >= 18 && <p>Age: {user.age}</p>}
+        {getLocation(user.location)}
     </div>
 );
 
