@@ -1,11 +1,23 @@
 {
-  "name": "indecisionApp",
+  "name": "indecision-app",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Keith Caffrey",
   "license": "MIT",
+  "scripts": {
+    "serve": "live-server public/",
+    "build": "webpack --mode development --watch",
+    "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+  },
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1"
+    "babel-preset-react": "^6.24.1",
+    "live-server": "^1.2.0",
+    "validator": "^10.5.0",
+    "webpack": "^4.16.5"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.1.0"
   }
 }
