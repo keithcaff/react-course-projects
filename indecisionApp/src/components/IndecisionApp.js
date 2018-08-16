@@ -1,35 +1,40 @@
-import React from 'react'
-
-import AddOption from './AddOption'
-import Options  from './Options'
-import Action from './Action'
-import Header from './Header'
+import React from 'react';
+import AddOption from './AddOption';
+import Options  from './Options';
+import Action from './Action';
+import Header from './Header';
+import OptionModal from './OptionModal';
 
 export default class IndecisionApp  extends React.Component {
     state = {
-        options: []
-    }
+        options: [],
+        selectedOption: undefined
+    };
 
     handleDeleteOptions = () => {
         /*if we wrap arrow function curly brackeys in parentheses 
         we are returning an object instead of opening the funcion body*/
         this.setState(() => ({ options:[] }) );
+    };
+
+    handleClearSelectedOption = () =>{
+        this.setState(()=>( { selectedOption: undefined} ));
     }
 
     handlePick = () => {
         if (this.state.options.length > 0) {
             const options = this.state.options
             const randomNum = Math.floor((Math.random() * options.length));
-            const randomOption = options[randomNum];
-            alert(randomOption);
+            const selectedOption = options[randomNum];
+            this.setState( () => ( { selectedOption }))
         }
-    }
+    };
 
     handleDeleteOption = (optionToRemove) => {
         this.setState((prevState) => ({
             options:prevState.options.filter((option) => option !== optionToRemove)
         }));
-    }
+    };
 
     handleAddOption = (option) => {
         if (!option) {
@@ -38,7 +43,7 @@ export default class IndecisionApp  extends React.Component {
             return 'This option already exists';
         }
         this.setState((prevState) => ({options: prevState.options.concat([option])}) );
-    } 
+    }; 
 
     componentDidMount() {
         try {
@@ -86,6 +91,12 @@ export default class IndecisionApp  extends React.Component {
                 <AddOption 
                     handleAddOption ={this.handleAddOption}
                 />
+                
+                <OptionModal 
+                    selectedOption={this.state.selectedOption}
+                    handleClearSelectedOption={this.handleClearSelectedOption}
+                />
+                
             </div>
         );
     }
