@@ -1,18 +1,43 @@
-// import subtract, { square, add } from './utils.js'
 
-// console.log('app.js is running!');
-// console.log(square(4));
-// console.log(add(4,4));
-// console.log(subtract(4,4));
+import React from 'react';
+import ReactDOM from 'react-dom';
+import IndecisionApp from './components/IndecisionApp';
 
 
-import validator from 'validator';
-// import isSenior, {isAdult, canDrink } from './person.js'
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
 
 
-// console.log(`isAdult: 17 - ${isAdult(17)}`); 
-// console.log(`canDrink: 23 - ${canDrink(23)}`);
-// console.log(`isSeniorDrink: 29 - ${isSenior(29)}`);
+class OldSyntax {
+    constructor() {
+        this.name = 'Mike';
+        this.getGreeting = this.getGreeting.bind(this);
+    }
 
-console.log(validator.isEmail('test@gmail.com'));
+    getGreeting() {
+        return `Hi my name is ${this.name}`;
+    }
+}
 
+const oldSyntax = new OldSyntax();
+console.log(oldSyntax);
+const getGreeting = oldSyntax.getGreeting;
+console.log(oldSyntax.getGreeting());
+console.log(getGreeting());
+
+
+
+
+
+// ---------------------
+
+
+class NewSyntax {
+    name = 'Jen';
+    getGreeting = () => {
+        return `Hi my name is ${this.name}`;
+    }
+}
+
+const newSyntax = new NewSyntax();
+const newGetGreeting = newSyntax.getGreeting;
+console.log(newGetGreeting());
