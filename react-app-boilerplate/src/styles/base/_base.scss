@@ -1,0 +1,17 @@
+// rem
+html {
+    font-size: 62.5% //1rem is 16px so if we set it as 16*.625 we get 1 rem is equal to 10px.
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.6rem; //16px
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
